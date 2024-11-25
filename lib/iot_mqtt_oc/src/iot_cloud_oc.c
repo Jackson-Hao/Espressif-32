@@ -99,7 +99,25 @@ static void deal_cmd_msg(cmd_t *cmd) {
         }
         cmdret = 0;
         oc_cmdresp(cmd, cmdret);
-    } else {
+    } else if(strcmp(cJSON_GetStringValue(obj_cmdname), "Alarm") == 0) {
+        obj_paras = cJSON_GetObjectItem(obj_root, "paras");
+        if (obj_paras == NULL) {
+            cJSON_Delete(obj_root);
+        }
+        obj_para = cJSON_GetObjectItem(obj_paras, "status");
+        if (obj_para == NULL) {
+            cJSON_Delete(obj_root);
+        }
+        if (strcmp(cJSON_GetStringValue(obj_para), "ON") == 0) {
+            printf("Alarm On!\r\n");
+        } else if (strcmp(cJSON_GetStringValue(obj_para), "OFF") == 0) {
+            printf("Alarm Off!\r\n");
+        }
+        cmdret = 0;
+        oc_cmdresp(cmd, cmdret);
+    } // else if(){}
+    else {
+
     }
 }
 
@@ -128,65 +146,65 @@ static void deal_report_msg(void) {
     return;
 }
 
-static void DelayUs(uint32_t nCount) {
-    usleep(nCount);
-}  
-static uint8_t DHT11_ReadValue(void) { 
-    uint8_t i, sbuf = 0;
-    for (i = 8; i > 0; i--) {
-        sbuf <<= 1; 
-        while (!gpio_get_level(DHT11_PIN));
-        DelayUs(30);  // 延时 30us 后检测数据线是否还是高电平 
-        if (gpio_get_level(DHT11_PIN)) {
-            sbuf |= 1;  
-        } else {
-            sbuf |= 0;
-        }
-        while (gpio_get_level(DHT11_PIN));
-    }
-    return sbuf;   
-}
+// static void DelayUs(uint32_t nCount) {
+//     usleep(nCount);
+// }  
+// static uint8_t DHT11_ReadValue(void) { 
+//     uint8_t i, sbuf = 0;
+//     for (i = 8; i > 0; i--) {
+//         sbuf <<= 1; 
+//         while (!gpio_get_level(DHT11_PIN));
+//         DelayUs(30);  // 延时 30us 后检测数据线是否还是高电平 
+//         if (gpio_get_level(DHT11_PIN)) {
+//             sbuf |= 1;  
+//         } else {
+//             sbuf |= 0;
+//         }
+//         while (gpio_get_level(DHT11_PIN));
+//     }
+//     return sbuf;   
+// }
 
-static uint8_t DHT11_ReadTemHum(uint8_t *buf) {
-    uint8_t check;
+// static uint8_t DHT11_ReadTemHum(uint8_t *buf) {
+//     uint8_t check;
 
-    buf[0] = DHT11_ReadValue();
-    buf[1] = DHT11_ReadValue();
-    buf[2] = DHT11_ReadValue();
-    buf[3] = DHT11_ReadValue();
+//     buf[0] = DHT11_ReadValue();
+//     buf[1] = DHT11_ReadValue();
+//     buf[2] = DHT11_ReadValue();
+//     buf[3] = DHT11_ReadValue();
     
-    check = DHT11_ReadValue();
+//     check = DHT11_ReadValue();
 
-    if (check == buf[0] + buf[1] + buf[2] + buf[3])
-        return 1;
-    else
-        return 0;
-}
+//     if (check == buf[0] + buf[1] + buf[2] + buf[3])
+//         return 1;
+//     else
+//         return 0;
+// }
 
-void IoTGpioDHTMainTask(void* pvParameters) {
-    printf("ESP32 DHT11 TEST:%s,%s!\r\n",__DATE__,__TIME__);
-    esp_task_wdt_add(NULL);
-    while(1) {
-        gpio_set_direction(DHT11_PIN, GPIO_MODE_OUTPUT);
-        gpio_set_level(DHT11_PIN, 0);
-        DelayUs(19*1000);
-        gpio_set_level(DHT11_PIN, 1);
-        DelayUs(30);
-        gpio_set_direction(DHT11_PIN, GPIO_MODE_INPUT);
-        while(!gpio_get_level(DHT11_PIN));
-        while(gpio_get_level(DHT11_PIN));
+// void IoTGpioDHTMainTask(void* pvParameters) {
+//     printf("ESP32 DHT11 TEST:%s,%s!\r\n",__DATE__,__TIME__);
+//     esp_task_wdt_add(NULL);
+//     while(1) {
+//         gpio_set_direction(DHT11_PIN, GPIO_MODE_OUTPUT);
+//         gpio_set_level(DHT11_PIN, 0);
+//         DelayUs(19*1000);
+//         gpio_set_level(DHT11_PIN, 1);
+//         DelayUs(30);
+//         gpio_set_direction(DHT11_PIN, GPIO_MODE_INPUT);
+//         while(!gpio_get_level(DHT11_PIN));
+//         while(gpio_get_level(DHT11_PIN));
 
-        if (DHT11_ReadTemHum(DHT11Data)) {
-            Temp = DHT11Data[2];
-            Humi = DHT11Data[0];
-            printf("Humi:%d,Temp:%d\r\n",Humi,Temp);
-        } else {
-            printf("DHT11 Read Error!\r\n");
-        }
-        esp_task_wdt_reset();
-        vTaskDelay(2500 / portTICK_PERIOD_MS);
-    }
-}
+//         if (DHT11_ReadTemHum(DHT11Data)) {
+//             Temp = DHT11Data[2];
+//             Humi = DHT11Data[0];
+//             printf("Humi:%d,Temp:%d\r\n",Humi,Temp);
+//         } else {
+//             printf("DHT11 Read Error!\r\n");
+//         }
+//         esp_task_wdt_reset();
+//         vTaskDelay(2500 / portTICK_PERIOD_MS);
+//     }
+// }
 
 void IoTGpioLedMainTask(void *pvParameters) {
     while(1) {

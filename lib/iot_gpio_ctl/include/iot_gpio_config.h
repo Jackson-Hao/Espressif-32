@@ -11,7 +11,7 @@
 
 #define GPIO_LED_IO 5
 #define GPIO_LED_PIN 1ULL<<GPIO_LED_IO  
-#define DHT11_PIN 6
+// #define DHT11_PIN 6
 
 typedef struct{
     uint8_t gpio_pin;

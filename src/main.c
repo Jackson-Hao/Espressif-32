@@ -31,7 +31,7 @@ static void IotMainTaskEntry(void) {
     xTaskCreatePinnedToCore(IoTPropertyReportTask, ATTR_NAME, ATTR_TASK_STACK_SIZE, NULL, ATTR_TASK_PRIORITY, NULL, 1);
     xTaskCreatePinnedToCore(IoTGpioServiceInit, "IoTGpioServiceInit", 1024*4, NULL, 5, NULL, 1);
     xTaskCreatePinnedToCore(IoTGpioLedMainTask, "IoTGpioMainTask", 1024*2, NULL, 5, NULL, 1);
-    xTaskCreatePinnedToCore(IoTGpioDHTMainTask, "IoTGpioDHTMainTask", 1024*4, NULL, 5, NULL, 1);
+    // xTaskCreatePinnedToCore(IoTGpioDHTMainTask, "IoTGpioDHTMainTask", 1024*4, NULL, 5, NULL, 1);
 }
 
 APP_SERVICE_INIT(IotMainTaskEntry)
