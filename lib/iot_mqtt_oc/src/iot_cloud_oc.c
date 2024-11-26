@@ -8,10 +8,9 @@
 #include "sys/unistd.h"
 
 #define TAG "[MQTT client]:"
-// #define CN_OC_MQTT_PROFILE_MESSAGE_TOPICFMT "$oc/devices/%s/sys/messages/down"
 #define MQTT_CLIENT_ID "6613b0b82ccc1a58388044e4_Hi3861V100_0_0_2024111707"
-#define CN_OC_MQTT_PROFILE_PROPERTYREPORT_TOPICFMT "$oc/devices/%s/sys/properties/report"
-#define CN_OC_MQTT_PROFILE_CMDRESP_TOPICFMT "$oc/devices/%s/sys/commands/response/request_id=%s"
+#define IOT_OC_MQTT_PROFILE_PROPERTYREPORT_TOPICFMT "$oc/devices/%s/sys/properties/report"
+#define IOT_OC_MQTT_PROFILE_CMDRESP_TOPICFMT "$oc/devices/%s/sys/commands/response/request_id=%s"
 
 static int get_request_id(char *topic, char* request_id, size_t request_id_size);
 static void oc_cmdresp(cmd_t *cmd, int cmdret);
@@ -49,13 +48,17 @@ static int get_request_id(char *topic, char* request_id, size_t request_id_size)
 }
 
 static void oc_cmdresp(cmd_t *cmd, int cmdret) {
+    uint8_t ret;
     oc_mqtt_profile_cmdresp_t cmdresp;
     ///< do the response
     cmdresp.paras = NULL;
     cmdresp.request_id = cmd->request_id;
     cmdresp.ret_code = cmdret;
     cmdresp.ret_name = NULL;
-    oc_mqtt_profile_cmdresp(&mqtt_client_handle,CN_OC_MQTT_PROFILE_CMDRESP_TOPICFMT,MQTT_CLIENT_ID, &cmdresp);
+    if (ret = oc_mqtt_profile_cmdresp(&mqtt_client_handle,IOT_OC_MQTT_PROFILE_CMDRESP_TOPICFMT,MQTT_CLIENT_ID, &cmdresp) != 0) {
+        printf("Fatal error: Failed to response command\n");
+    }
+    return;
 }
 
 #include "cJSON.h"
@@ -99,7 +102,7 @@ static void deal_cmd_msg(cmd_t *cmd) {
         }
         cmdret = 0;
         oc_cmdresp(cmd, cmdret);
-    } else if(strcmp(cJSON_GetStringValue(obj_cmdname), "Alarm") == 0) {
+    } else if (strcmp(cJSON_GetStringValue(obj_cmdname), "Alarm") == 0) {
         obj_paras = cJSON_GetObjectItem(obj_root, "paras");
         if (obj_paras == NULL) {
             cJSON_Delete(obj_root);
@@ -115,13 +118,13 @@ static void deal_cmd_msg(cmd_t *cmd) {
         }
         cmdret = 0;
         oc_cmdresp(cmd, cmdret);
-    } // else if(){}
-    else {
-
+    } else {
+        return;
     }
 }
 
 static void deal_report_msg(void) {
+    uint8_t ret;
     oc_mqtt_profile_service_t service;
     oc_mqtt_profile_kv_t voltage;
     oc_mqtt_profile_kv_t current;
@@ -141,70 +144,12 @@ static void deal_report_msg(void) {
     current.type = EN_OC_MQTT_PROFILE_VALUE_STRING;
     current.nxt = NULL;
     
-    oc_mqtt_profile_propertyreport(&mqtt_client_handle, CN_OC_MQTT_PROFILE_PROPERTYREPORT_TOPICFMT, MQTT_CLIENT_ID, &service);
-
+    ret = oc_mqtt_profile_propertyreport(&mqtt_client_handle, IOT_OC_MQTT_PROFILE_PROPERTYREPORT_TOPICFMT, MQTT_CLIENT_ID, &service);
+    if (ret != 0) {
+        printf("Fatal error: Failed to report property\n");
+    }
     return;
 }
-
-// static void DelayUs(uint32_t nCount) {
-//     usleep(nCount);
-// }  
-// static uint8_t DHT11_ReadValue(void) { 
-//     uint8_t i, sbuf = 0;
-//     for (i = 8; i > 0; i--) {
-//         sbuf <<= 1; 
-//         while (!gpio_get_level(DHT11_PIN));
-//         DelayUs(30);  // 延时 30us 后检测数据线是否还是高电平 
-//         if (gpio_get_level(DHT11_PIN)) {
-//             sbuf |= 1;  
-//         } else {
-//             sbuf |= 0;
-//         }
-//         while (gpio_get_level(DHT11_PIN));
-//     }
-//     return sbuf;   
-// }
-
-// static uint8_t DHT11_ReadTemHum(uint8_t *buf) {
-//     uint8_t check;
-
-//     buf[0] = DHT11_ReadValue();
-//     buf[1] = DHT11_ReadValue();
-//     buf[2] = DHT11_ReadValue();
-//     buf[3] = DHT11_ReadValue();
-    
-//     check = DHT11_ReadValue();
-
-//     if (check == buf[0] + buf[1] + buf[2] + buf[3])
-//         return 1;
-//     else
-//         return 0;
-// }
-
-// void IoTGpioDHTMainTask(void* pvParameters) {
-//     printf("ESP32 DHT11 TEST:%s,%s!\r\n",__DATE__,__TIME__);
-//     esp_task_wdt_add(NULL);
-//     while(1) {
-//         gpio_set_direction(DHT11_PIN, GPIO_MODE_OUTPUT);
-//         gpio_set_level(DHT11_PIN, 0);
-//         DelayUs(19*1000);
-//         gpio_set_level(DHT11_PIN, 1);
-//         DelayUs(30);
-//         gpio_set_direction(DHT11_PIN, GPIO_MODE_INPUT);
-//         while(!gpio_get_level(DHT11_PIN));
-//         while(gpio_get_level(DHT11_PIN));
-
-//         if (DHT11_ReadTemHum(DHT11Data)) {
-//             Temp = DHT11Data[2];
-//             Humi = DHT11Data[0];
-//             printf("Humi:%d,Temp:%d\r\n",Humi,Temp);
-//         } else {
-//             printf("DHT11 Read Error!\r\n");
-//         }
-//         esp_task_wdt_reset();
-//         vTaskDelay(2500 / portTICK_PERIOD_MS);
-//     }
-// }
 
 void IoTGpioLedMainTask(void *pvParameters) {
     while(1) {
@@ -226,6 +171,7 @@ void IoTGpioLedMainTask(void *pvParameters) {
 void IoTPropertyReportTask(void *pvParameters) {
     int voltage, current;
     while (1) {
+        // Fake data
         voltage = rand() % 100;
         current = rand() % 100;
         snprintf(adc_data.voltage, sizeof(adc_data.voltage), "%d", voltage);
@@ -238,17 +184,13 @@ void IoTPropertyReportTask(void *pvParameters) {
 static void IoTCloudMainTask(void* event_handler_arg, esp_event_base_t event_base, int32_t event_id, void* event_data) {
     esp_mqtt_event_handle_t data = (esp_mqtt_event_handle_t) event_data;
     int msg_id = 0;
-    //char *topic_subscribe = NULL;
     char *topic_publish = NULL;
     switch ((esp_mqtt_event_id_t) event_id) {
         case MQTT_EVENT_CONNECTED:  // MQTT连接成功,订阅主题
             ESP_LOGI(TAG, "MQTT client connected");
-            topic_publish = topic_make(CN_OC_MQTT_PROFILE_PROPERTYREPORT_TOPICFMT, MQTT_CLIENT_ID, NULL);
+            topic_publish = topic_make(IOT_OC_MQTT_PROFILE_PROPERTYREPORT_TOPICFMT, MQTT_CLIENT_ID, NULL);
             msg_id = esp_mqtt_client_publish(mqtt_client_handle, topic_publish , NULL, 0, 1, 0);
             ESP_LOGI(TAG, "sent publish successful, msg_id=%d", msg_id);
-            // topic_subscribe = topic_make(CN_OC_MQTT_PROFILE_MESSAGE_TOPICFMT, MQTT_CLIENT_ID, NULL);
-            // msg_id = esp_mqtt_client_subscribe(mqtt_client_handle, topic_subscribe, 1);
-            // ESP_LOGI(TAG, "sent subscribe successful, msg_id=%d", msg_id);
             break;
         case MQTT_EVENT_DISCONNECTED:
             ESP_LOGI(TAG, "MQTT client disconnected");
@@ -259,24 +201,19 @@ static void IoTCloudMainTask(void* event_handler_arg, esp_event_base_t event_bas
         case MQTT_EVENT_PUBLISHED:
             ESP_LOGI(TAG, "MQTT client published");
             break;
-        case MQTT_EVENT_DATA:   // 接收到订阅的消息
-            // ESP_LOGI(TAG, "topic->%s\n, data->%s\n", data->topic, data->data);
+        case MQTT_EVENT_DATA:
             char* payload = malloc(data->data_len + 1);
             char* topic = malloc(data->topic_len + 1);
             if (topic != NULL && payload != NULL) {
                 strncpy(topic, data->topic, data->topic_len);
                 topic[data->topic_len] = '\0';
-                //ESP_LOGI(TAG, "Received topic: %s", topic);
-
                 strncpy(payload, data->data, data->data_len);
                 payload[data->data_len] = '\0';
-                //ESP_LOGI(TAG, "Received data: %s", payload);
-                
+
                 char request_id[40];
                 if (get_request_id(topic, request_id, sizeof(request_id)) == 0) {
-                    //printf("Extracted request_id: %s\n", request_id);
-                }
-                else {
+                    printf("Extracted request_id: %s\n", request_id);
+                } else {
                     printf("Failed to extract request_id\n");
                 }
                 cmd_t cmd = {request_id, payload};

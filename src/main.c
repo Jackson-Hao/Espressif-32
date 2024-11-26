@@ -3,13 +3,14 @@
 #include "nvs_flash.h"
 #include "esp_log.h"
 
-#include "iot_cloud_oc.h"
+#include "iot_cloud_oc.h"   
 #include "iot_wifi_sta.h"
 #include "iot_gpio_config.h"
 
-#define ATTR_NAME "IoTPropertyReportTask"
-#define ATTR_TASK_STACK_SIZE 1024*4
-#define ATTR_TASK_PRIORITY 5
+#define ATTR_CLOUD_SERVICE_NAME "IoTPropertyReportTask"
+#define ATTR_CLOUD_SERVICE_TASK_STACK_SIZE 1024*4
+#define ATTR_CLOUD_SERVICE_TASK_PRIORITY 5
+#define APP_SERVICE_CPUID 1
 
 
 static void IotMainTaskEntry(void) {
@@ -28,10 +29,10 @@ static void IotMainTaskEntry(void) {
     }
 
     IoTCloudServiceTaskEntry(MQTT_BROKER_URL, MQTT_CLIENT_ID, MQTT_BROKER_USER, MQTT_BROKER_PASS);
-    xTaskCreatePinnedToCore(IoTPropertyReportTask, ATTR_NAME, ATTR_TASK_STACK_SIZE, NULL, ATTR_TASK_PRIORITY, NULL, 1);
-    xTaskCreatePinnedToCore(IoTGpioServiceInit, "IoTGpioServiceInit", 1024*4, NULL, 5, NULL, 1);
-    xTaskCreatePinnedToCore(IoTGpioLedMainTask, "IoTGpioMainTask", 1024*2, NULL, 5, NULL, 1);
-    // xTaskCreatePinnedToCore(IoTGpioDHTMainTask, "IoTGpioDHTMainTask", 1024*4, NULL, 5, NULL, 1);
+    xTaskCreatePinnedToCore(IoTPropertyReportTask, ATTR_CLOUD_SERVICE_NAME, ATTR_CLOUD_SERVICE_TASK_STACK_SIZE, NULL, ATTR_CLOUD_SERVICE_TASK_PRIORITY, NULL, APP_SERVICE_CPUID);
+    
+    xTaskCreatePinnedToCore(IoTGpioServiceInit, "IoTGpioServiceInit", 1024*4, NULL, 5, NULL, APP_SERVICE_CPUID);
+    xTaskCreatePinnedToCore(IoTGpioLedMainTask, "IoTGpioMainTask", 1024*2, NULL, 5, NULL, APP_SERVICE_CPUID);
 }
 
 APP_SERVICE_INIT(IotMainTaskEntry)

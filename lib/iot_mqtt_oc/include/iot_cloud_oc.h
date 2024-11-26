@@ -7,5 +7,6 @@ void IoTCloudServiceTaskEntry(const char *mqtt_url, const char *client_id, const
 void IoTPropertyReportTask(void *pvParameters);
 void IoTGpioLedMainTask(void *pvParameters);
 void IoTGpioDHTMainTask(void* pvParameters);
+
 #endif
 
