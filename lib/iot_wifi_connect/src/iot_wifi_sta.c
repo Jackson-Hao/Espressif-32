@@ -15,9 +15,6 @@
 #include "esp_event.h"
 #include "esp_log.h"
 
-#define DEFAULT_WIFI_SSID           "HUAWEI Mate 60 Pro"
-#define DEFAULT_WIFI_PASSWORD       "haozihan2004"
-
 static const char *TAG = "[WIFI_TASK]:";
 
 static SemaphoreHandle_t s_wifi_connect_sem = NULL;

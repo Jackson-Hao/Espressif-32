@@ -5,7 +5,9 @@
 #define IOT_OC_MQTT_PROFILE_CMDRESP_KEY_RETCODE "result_code"
 #define IOT_OC_MQTT_PROFILE_CMDRESP_KEY_RESPNAME "response_name"
 #define IOT_OC_MQTT_PROFILE_CMDRESP_KEY_PARAS "paras"
+
 #define IOT_OC_MQTT_PROFILE_SETPROPERTYRESP_KEY_RETDESC "result_desc"
+
 #define IOT_OC_MQTT_PROFILE_SERVICES_KEY "services"
 #define IOT_OC_MQTT_PROFILE_SERVICE_KEY_SERVICEID "service_id"
 #define IOT_OC_MQTT_PROFILE_SERVICE_KEY_PROPERTIES "properties"
@@ -18,9 +20,9 @@ static cJSON *make_service(oc_mqtt_profile_service_t *service_info);
 static cJSON *make_services(oc_mqtt_profile_service_t *service_info);
 char *topic_make(char *fmt, char *device_id, char *request_id);
 uint8_t oc_mqtt_profile_cmdresp(esp_mqtt_client_handle_t *mqtt_handle, char *oc_mqtt_profile_cmdresp_topic, char *deviceid, oc_mqtt_profile_cmdresp_t *payload);
-char *oc_mqtt_profile_package_propertyreport(oc_mqtt_profile_service_t *payload);
 uint8_t oc_mqtt_profile_propertyreport(esp_mqtt_client_handle_t *mqtt_handle, char *oc_mqtt_profile_propertyreport_topic, char *deviceid, oc_mqtt_profile_service_t *payload);
 char *oc_mqtt_profile_package_cmdresp(oc_mqtt_profile_cmdresp_t *payload);
+char *oc_mqtt_profile_package_propertyreport(oc_mqtt_profile_service_t *payload);
 
 static void cJSON_Delete_root(cJSON *root) {
     if (root != NULL) {
@@ -56,14 +58,12 @@ static cJSON *make_kvs(oc_mqtt_profile_kv_t *kvlst) {
     cJSON *kv;
     oc_mqtt_profile_kv_t *kv_info;
 
-    ///< build a root node
     root = cJSON_CreateObject();
     if (root == NULL) {
         cJSON_Delete_root(root);
         return root;
     }
 
-    ///< add all the property to the properties
     kv_info = kvlst;
     while (kv_info != NULL) {
         kv = profile_fmtvalue(kv_info);
@@ -76,7 +76,6 @@ static cJSON *make_kvs(oc_mqtt_profile_kv_t *kvlst) {
         kv_info = kv_info->nxt;
     }
 
-    ///< OK, now we return it
     return root;
 }
 
@@ -86,14 +85,12 @@ static cJSON *make_service(oc_mqtt_profile_service_t *service_info) {
     cJSON *properties;
     cJSON *event_time;
 
-    ///< build a root node
     root = cJSON_CreateObject();
     if (root == NULL) {
         cJSON_Delete_root(root);
         return root;
     }
 
-    ///< add the service_id node to the root node
     service_id = cJSON_CreateString(service_info->service_id);
     if (service_id == NULL) {
         cJSON_Delete_root(root);
@@ -101,7 +98,6 @@ static cJSON *make_service(oc_mqtt_profile_service_t *service_info) {
     }
     cJSON_AddItemToObjectCS(root, IOT_OC_MQTT_PROFILE_SERVICE_KEY_SERVICEID, service_id);
 
-    ///< add the properties node to the root
     properties = make_kvs(service_info->service_property);
     if (properties == NULL) {
         cJSON_Delete_root(root);
@@ -109,7 +105,6 @@ static cJSON *make_service(oc_mqtt_profile_service_t *service_info) {
     }
     cJSON_AddItemToObjectCS(root, IOT_OC_MQTT_PROFILE_SERVICE_KEY_PROPERTIES, properties);
 
-    ///< add the event time (optional) to the root
     if (service_info->event_time != NULL) {
         event_time = cJSON_CreateString(service_info->event_time);
         if (event_time == NULL) {
@@ -119,7 +114,6 @@ static cJSON *make_service(oc_mqtt_profile_service_t *service_info) {
         cJSON_AddItemToObjectCS(root, IOT_OC_MQTT_PROFILE_SERVICE_KEY_EVENTTIME, event_time);
     }
 
-    ///< OK, now we return it
     return root;
 }
 
@@ -128,7 +122,6 @@ static cJSON *make_services(oc_mqtt_profile_service_t *service_info) {
     cJSON *service;
     oc_mqtt_profile_service_t *service_tmp;
 
-    ///< create the services array node
     services = cJSON_CreateArray();
     if (services == NULL) {
         if (services != NULL) {
@@ -152,8 +145,6 @@ static cJSON *make_services(oc_mqtt_profile_service_t *service_info) {
         cJSON_AddItemToArray(services, service);
         service_tmp = service_tmp->nxt;
     }
-
-    ///< now we return the services
     return services;
 }
 
@@ -187,9 +178,8 @@ uint8_t oc_mqtt_profile_cmdresp(esp_mqtt_client_handle_t *mqtt_handle,char *oc_m
     }
 
     topic = topic_make(oc_mqtt_profile_cmdresp_topic, device_id, payload->request_id);
-    //printf("topic set!\n");
     msg = oc_mqtt_profile_package_cmdresp(payload);
-    //printf("msg set!\n");
+
     if ((topic != NULL) && (msg != NULL)) {
         ret = esp_mqtt_client_publish(*mqtt_handle, topic, msg, strlen(msg), 1, 0);
     } else {
@@ -207,14 +197,12 @@ char *oc_mqtt_profile_package_propertyreport(oc_mqtt_profile_service_t *payload)
     cJSON *root;
     cJSON *services;
 
-    ///< create the root node
     root = cJSON_CreateObject();
     if (root == NULL) {
         cJSON_Delete_root(root);
         return ret;
     }
 
-    ///< create the services array node to the root
     services = make_services(payload);
     if (services == NULL) {
         cJSON_Delete_root(root);
@@ -222,7 +210,6 @@ char *oc_mqtt_profile_package_propertyreport(oc_mqtt_profile_service_t *payload)
     }
     cJSON_AddItemToObjectCS(root, IOT_OC_MQTT_PROFILE_SERVICES_KEY, services);
 
-    ///< OK, now we make it to a buffer
     ret = cJSON_PrintUnformatted(root);
     cJSON_Delete(root);
     return ret;

@@ -2,6 +2,9 @@
 #define _WIFI_MANAGER_H_
 #include "esp_err.h"
 
+#define DEFAULT_WIFI_SSID           "HUAWEI Mate 60 Pro"
+#define DEFAULT_WIFI_PASSWORD       "haozihan2004"
+
 typedef enum {
     WIFI_DISCONNECTED,
     WIFI_CONNECTED,
