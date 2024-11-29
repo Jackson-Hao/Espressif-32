@@ -5,9 +5,15 @@
 ## 目录
 - [使用说明](#使用说明)
   - [目录](#目录)
+  - [版权](#版权)
   - [前言](#前言)
   - [仓库结构](#仓库结构)
   - [使用说明](#使用说明-1)
+
+## 版权
+Copyright (c) 2024, Jackson Hao.<br>
+la_jackson_hao@petalmail.com<br>
+Zhengzhou University of Light Industry, PRC.
 
 ## 前言
 本仓库为ESP32S3N16R8开发板使用MQTT协议连接华为云物联网平台的框架代码。基于Hisilicon Hi3861平台移植开发，使用华为云物联网平台提供的MQTT协议接口，实现设备与云端的数据通信。本仓库提供了华为云物联网平台MQTT协议接口的移植代码，以及一个简单的示例代码，开发者可以根据自己的需求进行二次开发。
