@@ -55,7 +55,7 @@ static void oc_cmdresp(cmd_t *cmd, int cmdret) {
     cmdresp.request_id = cmd->request_id;
     cmdresp.ret_code = cmdret;
     cmdresp.ret_name = NULL;
-    if (ret = oc_mqtt_profile_cmdresp(&mqtt_client_handle,IOT_OC_MQTT_PROFILE_CMDRESP_TOPICFMT,MQTT_CLIENT_ID, &cmdresp) != 0) {
+    if ((ret = oc_mqtt_profile_cmdresp(&mqtt_client_handle,IOT_OC_MQTT_PROFILE_CMDRESP_TOPICFMT,MQTT_CLIENT_ID, &cmdresp)) != 0) {
         printf("Fatal error: Failed to response command\n");
     }
     return;

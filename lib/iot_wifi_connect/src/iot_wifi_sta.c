@@ -50,7 +50,7 @@ static void wifi_event_handler(void* arg, esp_event_base_t event_base,int32_t ev
     }
 }
 
-esp_err_t wifi_sta_init(wifi_event_cb f) {   
+esp_err_t wifi_sta_init(wifi_event_cb f) {
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
     esp_netif_create_default_wifi_sta();
