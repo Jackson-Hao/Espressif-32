@@ -106,7 +106,7 @@ def select():
 def clean_linux():
     build_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src', 'build')
     if os.path.exists(build_dir):
-        os.system(f'rm -rf {build_dir}')
+        os.system(f'rm -rf {build_dir}/*')
         print(Fore.GREEN + f"[Notice]: {build_dir} has been removed successfully.")
     else:
         print(Fore.RED + f"[Error]: {build_dir} does not exist.")
@@ -225,6 +225,11 @@ def del_new_directory(service_name):
         os.remove(sdkconfig_file)
         print(f"Service '{service_name}' has been removed from sdkconfig.{service_name}.")
 
+def build_project():
+    os.system('pio run')
+
+def upload_project():
+    os.system('pio run -t upload')
 
 
 if __name__ == "__main__":
@@ -234,6 +239,9 @@ if __name__ == "__main__":
     parser.add_argument('--version', action='store_true', help= 'Show Version')
     parser.add_argument('--new', type=str, help='Create a new directory')
     parser.add_argument('--delete', type=str, help='Delete a directory')
+    parser.add_argument('--build', action='store_true', help='Build the project')
+    parser.add_argument('--upload', action='store_true', help='Upload the project')
+
     args = parser.parse_args()
     if args.select:
         select()
@@ -256,6 +264,10 @@ if __name__ == "__main__":
         create_new_directory(args.new)
     elif args.delete:
         del_new_directory(args.delete)
+    elif args.build:
+        build_project()
+    elif args.upload:
+        upload_project()
     else:
         print(Fore.RED + "No arguments provided.")
         parser.print_help()
