@@ -8,13 +8,12 @@
   - [版权](#版权)
   - [前言](#前言)
   - [开发环境](#开发环境)
-  - [仓库结构](#仓库结构)
   - [使用说明](#使用说明)
 
 ## 版权
 Copyright (c) 2024, Jackson Hao.<br>
 la_jackson_hao@petalmail.com<br>
-Zhengzhou University of Light Industry, PRC.
+Zhengzhou University of Light Industry, PRC.<br>
 本仓库遵循GPL-3.0开源协议。
 
 ## 前言
@@ -28,28 +27,6 @@ Zhengzhou University of Light Industry, PRC.
 - 开发语言：C
 - 框架：ESP-IDF v5.3.1
 - 云平台：华为云物联网平台
-
-## 仓库结构
-- /
-  - /.vscode
-  - /include
-    - 此处存放main.c文件相对应的配置文件 
-  - /lib
-    - /iot_gpio_ctl
-      - 此处存放GPIO控制相关的代码
-    - /iot_mqtt_oc
-      - 此处存放MQTT协议相关的业务代码，包括MQTT协议的初始化、连接、订阅、发布等操作
-    - /iot_wifi_connect
-      - 此处存放Wi-Fi连接相关的依赖代码
-  - /src
-    - CMakelists.txt
-    - main.c
-      - 此处存放主函数代码，启动Wi-Fi连接、MQTT业务、GPIO控制等
-  - platformio.ini
-  - partition.csv
-    - 此处存放ESP32分区表配置文件
-  - CMakeLists.txt
-  - README.md
 
 ## 使用说明
 使用前请先配置好华为云物联网平台的设备信息，包括设备ID、设备密码、产品ID等信息。配置完成后，将相关信息填写到mqtt配置文件中的相应位置，同时配置好WLAN信息，即可编译下载到ESP32S3N16R8开发板上运行。

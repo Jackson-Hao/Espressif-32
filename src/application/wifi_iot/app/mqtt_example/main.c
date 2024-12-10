@@ -3,7 +3,7 @@
 #include "nvs_flash.h"
 #include "esp_log.h"
 
-#include "iot_cloud_oc.h"   
+#include "iot_cloud_oc.h"
 #include "iot_wifi_sta.h"
 #include "iot_gpio_config.h"
 
