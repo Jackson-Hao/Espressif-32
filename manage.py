@@ -70,10 +70,11 @@ def select():
     print(Fore.GREEN + "[Notice]: \"platformio.ini\" has been updated successfully.\n")
 '''
 
-def select():
+def select(service_name=None):
     services_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src', 'Services.json')
     cmake_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src', 'CMakeLists.txt')
     ini_file = 'platformio.ini'
+    
     if not os.path.exists(services_file):
         print(Fore.RED + f"{services_file} does not exist.")
         return
@@ -86,27 +87,70 @@ def select():
         return
     
     service_names = list(services.keys())
-    if len(service_names) >= 1:
-        print(Fore.GREEN + "\nMultiple services found.")
-        print(Fore.GREEN + "-----------------------------")
-        for i, name in enumerate(service_names):
-            print(Fore.CYAN + f"{i + 1}: {name}")
-        print(Fore.GREEN + "-----------------------------")
-        index = int(input(Fore.BLUE + "Please select one: ")) - 1
-        selected_service = service_names[index]
-        selected_dir = services[selected_service]['dir']
-        
-        with open(cmake_file, 'w') as file:
-            file.write(f"include(\n    {selected_dir}\n)")
+    
+    if service_name and service_name in services:
+        selected_service = service_name
+    else:
+        print(Fore.RED + f"[Error]: Service \"{service_name}\" not found.")
+        if len(service_names) >= 1:
+            print(Fore.GREEN + "\nMultiple services found.")
+            print(Fore.GREEN + "-----------------------------")
+            for i, name in enumerate(service_names):
+                print(Fore.CYAN + f"{i + 1}: {name}")
+            print(Fore.GREEN + "-----------------------------")
+            index = int(input(Fore.BLUE + "Please select one: ")) - 1
+            selected_service = service_names[index]
+        else:
+            print(Fore.RED + "[Error]: No services available for selection.")
+            return
+    
+    selected_dir = services[selected_service]['dir']
+    
+    with open(cmake_file, 'w') as file:
+        file.write(f"include(\n    {selected_dir}\n)")
+    
     include_dirs = parse_cmake_file(cmake_file)
     generate_platformio_ini(include_dirs, ini_file)
+    
     print(Fore.GREEN + f"\n[Notice]: Selected service: {selected_service}")
     print(Fore.GREEN + "[Notice]: \"CMakeLists.txt\" has been updated successfully.\n")
+
+def list_services():
+    services_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src', 'Services.json')
+    cmake_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src', 'CMakeLists.txt')
+    
+    if not os.path.exists(services_file):
+        print(Fore.RED + f"{services_file} does not exist.")
+        return
+    
+    with open(services_file, 'r') as file:
+        services = json.load(file)
+    
+    if not services:
+        print(Fore.RED + "[Error]: No services found.")
+        return
+    
+    included_services = []
+    if os.path.exists(cmake_file):
+        with open(cmake_file, 'r') as file:
+            cmake_content = file.read()
+            for service in services.keys():
+                if service in cmake_content:
+                    included_services.append(service)
+    
+    print(Fore.GREEN + "\nServices found:")
+    print(Fore.GREEN + "-----------------------------")
+    for name in services.keys():
+        if name in included_services:
+            print(Fore.YELLOW + f"-> {name}")
+        else:
+            print(Fore.CYAN + f"{name}")
+    print(Fore.GREEN + "-----------------------------\n")
 
 def clean_linux():
     build_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src', 'build')
     if os.path.exists(build_dir):
-        os.system(f'rm -rf {build_dir}')
+        os.system(f'rm -rf {build_dir}/*')
         print(Fore.GREEN + f"[Notice]: {build_dir} has been removed successfully.")
     else:
         print(Fore.RED + f"[Error]: {build_dir} does not exist.")
@@ -225,18 +269,29 @@ def del_new_directory(service_name):
         os.remove(sdkconfig_file)
         print(f"Service '{service_name}' has been removed from sdkconfig.{service_name}.")
 
+def build_project():
+    os.system('pio run')
+
+def upload_project():
+    os.system('pio run -t upload')
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Manage script")
-    parser.add_argument('--select', action='store_true', help="Execute the select function")
+    parser.add_argument('--list', action='store_true', help="List all the services")
+    parser.add_argument('--select', type=str, nargs='?', const=None, help="Select a service") # nargs='?' 表示可选参数, const='' 表示默认值
     parser.add_argument('--clean', action='store_true', help="Clean all the build files")
     parser.add_argument('--version', action='store_true', help= 'Show Version')
     parser.add_argument('--new', type=str, help='Create a new directory')
     parser.add_argument('--delete', type=str, help='Delete a directory')
+    parser.add_argument('--build', action='store_true', help='Build the project')
+    parser.add_argument('--upload', action='store_true', help='Upload the project')
+
     args = parser.parse_args()
     if args.select:
-        select()
+        select(args.select)
+    elif args.list:
+        list_services()
     elif args.clean:
         if os.name == 'nt':
             clean_windows()
@@ -256,6 +311,10 @@ if __name__ == "__main__":
         create_new_directory(args.new)
     elif args.delete:
         del_new_directory(args.delete)
+    elif args.build:
+        build_project()
+    elif args.upload:
+        upload_project()
     else:
         print(Fore.RED + "No arguments provided.")
         parser.print_help()

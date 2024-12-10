@@ -12,7 +12,7 @@
                 "/home/jackson-hao/.platformio/packages/framework-espidf/components/xtensa/esp32s3/include",
                 "/home/jackson-hao/.platformio/packages/framework-espidf/components/xtensa/include",
                 "/home/jackson-hao/.platformio/packages/framework-espidf/components/xtensa/deprecated_include",
-                "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/mqtt_example/config",
+                "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/config",
                 "/home/jackson-hao/.platformio/packages/framework-espidf/components/newlib/platform_include",
                 "/home/jackson-hao/.platformio/packages/framework-espidf/components/freertos/config/include",
                 "/home/jackson-hao/.platformio/packages/framework-espidf/components/freertos/config/include/freertos",
@@ -166,10 +166,14 @@
                 "/home/jackson-hao/.platformio/packages/framework-espidf/components/touch_element/include",
                 "/home/jackson-hao/.platformio/packages/framework-espidf/components/usb/include",
                 "/home/jackson-hao/.platformio/packages/framework-espidf/components/wifi_provisioning/include",
+<<<<<<< HEAD
                 "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/mqtt_example/include",
                 "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/mqtt_example/lib/iot_mqtt_oc/include",
                 "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/mqtt_example/lib/iot_gpio_ctl/include",
                 "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/mqtt_example/lib/iot_wifi_connect/include",
+=======
+                "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/startup/include",
+>>>>>>> Release-1.0
                 ""
             ],
             "browse": {
@@ -179,7 +183,11 @@
                     "/home/jackson-hao/.platformio/packages/framework-espidf/components/xtensa/esp32s3/include",
                     "/home/jackson-hao/.platformio/packages/framework-espidf/components/xtensa/include",
                     "/home/jackson-hao/.platformio/packages/framework-espidf/components/xtensa/deprecated_include",
+<<<<<<< HEAD
                     "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/mqtt_example/config",
+=======
+                    "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/config",
+>>>>>>> Release-1.0
                     "/home/jackson-hao/.platformio/packages/framework-espidf/components/newlib/platform_include",
                     "/home/jackson-hao/.platformio/packages/framework-espidf/components/freertos/config/include",
                     "/home/jackson-hao/.platformio/packages/framework-espidf/components/freertos/config/include/freertos",
@@ -333,10 +341,14 @@
                     "/home/jackson-hao/.platformio/packages/framework-espidf/components/touch_element/include",
                     "/home/jackson-hao/.platformio/packages/framework-espidf/components/usb/include",
                     "/home/jackson-hao/.platformio/packages/framework-espidf/components/wifi_provisioning/include",
+<<<<<<< HEAD
                     "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/mqtt_example/include",
                     "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/mqtt_example/lib/iot_mqtt_oc/include",
                     "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/mqtt_example/lib/iot_gpio_ctl/include",
                     "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/mqtt_example/lib/iot_wifi_connect/include",
+=======
+                    "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/startup/include",
+>>>>>>> Release-1.0
                     ""
                 ]
             },
