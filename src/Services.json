@@ -1,0 +1,11 @@
+{
+    "blink": {
+        "dir": "${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/blink/CMakeLists.txt"
+    },
+    "mqtt_example": {
+        "dir": "${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/mqtt_example/CMakeLists.txt"
+    },
+    "startup": {
+        "dir": "${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/startup/CMakeLists.txt"
+    }
+}
