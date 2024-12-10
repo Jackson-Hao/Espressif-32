@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/CMakeFiles/bootloader"
+		},
+		{
+			"file" : "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/CMakeFiles/bootloader.rule"
+		},
+		{
+			"file" : "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/CMakeFiles/bootloader-complete.rule"
+		},
+		{
+			"file" : "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+		},
+		{
+			"file" : "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+		},
+		{
+			"file" : "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+		},
+		{
+			"file" : "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+		},
+		{
+			"file" : "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+		},
+		{
+			"file" : "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+		},
+		{
+			"file" : "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"bootloader"
+		],
+		"name" : "bootloader"
+	}
+}

@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/CMakeFiles/bootloader
+/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/CMakeFiles/bootloader.rule
+/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/CMakeFiles/bootloader-complete.rule
+/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
+/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
