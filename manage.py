@@ -38,6 +38,7 @@ def generate_platformio_ini(include_dirs, ini_file):
             file.write("    ${common.build_flags}\n")
             file.write("board_build.partitions = src/setting/partition.csv\n")
             file.write("board_build.flash_mode = qio\n")
+            file.write("monitor_speed = 115200\n")
             file.write("extra_scripts = pre:extra_script.py\n\n")
             file.write("\n")
             file.write("[common]\n")

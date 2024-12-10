@@ -1,33 +1,48 @@
-# Espressif Development Board Connecting to Huawei Cloud IoT Platform Framework
+# Espressif Chip Quick Management Auxiliary Tool
 
 ---
 
 ## Table of Contents
-- [Espressif Development Board Connecting to Huawei Cloud IoT Platform Framework](#espressif-development-board-connecting-to-huawei-cloud-iot-platform-framework)
+- [Espressif Chip Quick Management Auxiliary Tool](#espressif-chip-quick-management-auxiliary-tool)
   - [Table of Contents](#table-of-contents)
   - [Copyright](#copyright)
   - [Introduction](#introduction)
   - [Development Environment](#development-environment)
-  - [Usage Instructions](#usage-instructions)
+  - [First Use](#first-use)
+  - [Command List](#command-list)
 
 ## Copyright
 Copyright (c) 2024, Jackson Hao.<br>
 la_jackson_hao@petalmail.com<br>
 Zhengzhou University of Light Industry, PRC.<br>
-This repository follows the GPL-3.0 open-source license.
+This repository follows the GPL-3.0 open source license.
 
 ## Introduction
-This repository contains the framework code for connecting the ESP32S3N16R8 development board to the Huawei Cloud IoT platform using the MQTT protocol. It is developed based on the Hisilicon Hi3861 platform and uses the MQTT protocol interface provided by the Huawei Cloud IoT platform to achieve data communication between the device and the cloud. This repository provides the ported code for the Huawei Cloud IoT platform MQTT protocol interface, as well as a simple example code. Developers can perform secondary development according to their own needs.
+
 
 ## Development Environment
 
-- Operating System: Windows 10 / Ubuntu 24.10
+- Operating System: Windows 10 Pro / Ubuntu 24.10
 - Development Board: ESP32S3N16R8
-- Development Tools: VSCode / PlatformIO
-- Programming Language: C
+- Development Tools: VSCode / PlatformIO / PyCharm
+- Development Languages: C / Python
 - Framework: ESP-IDF v5.3.1
-- Cloud Platform: Huawei Cloud IoT Platform
 
-## Usage Instructions
-Before use, please configure the device information of the Huawei Cloud IoT platform, including device ID, device password, product ID, etc. After configuration, fill in the relevant information in the corresponding positions of the mqtt configuration file, and configure the WLAN information. Then you can compile and download it to the ESP32S3N16R8 development board for operation.
-When configuring WLAN, you must choose the 2.4G band, otherwise it will not be able to connect to the Wi-Fi network.
+## First Use
+> Before using the tools in this repository, please ensure that you have installed Python 3.8 or above, and have installed and configured PlatformIO and its CLI tools.
+The usage of this tool is as follows:
+- 1. Download this repository to your local machine
+- 2. Navigate to the root directory of this repository
+- 3. Open the terminal and enter `python manage.py` to run this tool
+- 4. Follow the prompts and enter the corresponding commands
+
+## Command List
+- `python manage.py -h` `python manage.py --help`: View help information
+- `python manage.py --version`: View version information
+- `python manage.py --list`: List all business projects
+- `python manage.py --select [Project name]`: Select a business project
+- `python manage.py --new [Project name]`: Create a new business project
+- `python manage.py --delete [Project name]`: Delete a business project
+- `python manage.py --clean`: Clean all compiled files
+- `python manage.py --build`: Compile the selected business project
+- `python manage.py --upload`: Upload firmware to the development board
