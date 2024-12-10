@@ -12,7 +12,7 @@
                 "/home/jackson-hao/.platformio/packages/framework-espidf/components/xtensa/esp32s3/include",
                 "/home/jackson-hao/.platformio/packages/framework-espidf/components/xtensa/include",
                 "/home/jackson-hao/.platformio/packages/framework-espidf/components/xtensa/deprecated_include",
-                "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/config",
+                "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/multi_task/config",
                 "/home/jackson-hao/.platformio/packages/framework-espidf/components/newlib/platform_include",
                 "/home/jackson-hao/.platformio/packages/framework-espidf/components/freertos/config/include",
                 "/home/jackson-hao/.platformio/packages/framework-espidf/components/freertos/config/include/freertos",
@@ -166,7 +166,8 @@
                 "/home/jackson-hao/.platformio/packages/framework-espidf/components/touch_element/include",
                 "/home/jackson-hao/.platformio/packages/framework-espidf/components/usb/include",
                 "/home/jackson-hao/.platformio/packages/framework-espidf/components/wifi_provisioning/include",
-                "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/startup/include",
+                "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/multi_task/include",
+                "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/multi_task/lib/osThread/include",
                 ""
             ],
             "browse": {
@@ -176,7 +177,7 @@
                     "/home/jackson-hao/.platformio/packages/framework-espidf/components/xtensa/esp32s3/include",
                     "/home/jackson-hao/.platformio/packages/framework-espidf/components/xtensa/include",
                     "/home/jackson-hao/.platformio/packages/framework-espidf/components/xtensa/deprecated_include",
-                    "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/startup/config",
+                    "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/multi_task/config",
                     "/home/jackson-hao/.platformio/packages/framework-espidf/components/newlib/platform_include",
                     "/home/jackson-hao/.platformio/packages/framework-espidf/components/freertos/config/include",
                     "/home/jackson-hao/.platformio/packages/framework-espidf/components/freertos/config/include/freertos",
@@ -330,7 +331,8 @@
                     "/home/jackson-hao/.platformio/packages/framework-espidf/components/touch_element/include",
                     "/home/jackson-hao/.platformio/packages/framework-espidf/components/usb/include",
                     "/home/jackson-hao/.platformio/packages/framework-espidf/components/wifi_provisioning/include",
-                    "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/startup/include",
+                    "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/multi_task/include",
+                    "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/multi_task/lib/osThread/include",
                     ""
                 ]
             },
