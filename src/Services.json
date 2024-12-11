@@ -5,10 +5,10 @@
     "mqtt_example": {
         "dir": "${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/mqtt_example/CMakeLists.txt"
     },
-    "startup": {
-        "dir": "${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/startup/CMakeLists.txt"
-    },
     "multi_task": {
         "dir": "${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/multi_task/CMakeLists.txt"
+    },
+    "uart_loopback": {
+        "dir": "${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/uart_loopback/CMakeLists.txt"
     }
 }
