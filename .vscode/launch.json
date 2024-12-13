@@ -12,9 +12,15 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug",
+<<<<<<< HEAD
             "executable": "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/mqtt_example/firmware.elf",
             "projectEnvName": "mqtt_example",
             "toolchainBinDir": "/home/jackson-hao/.platformio/packages/toolchain-xtensa-esp-elf/bin",
+=======
+            "executable": "c:/Users/Jackson_Hao/PlatformIO/Projects/Espressif-32/src/build/uart_loopback/firmware.elf",
+            "projectEnvName": "uart_loopback",
+            "toolchainBinDir": "C:/Users/Jackson_Hao/.platformio/packages/toolchain-xtensa-esp-elf/bin",
+>>>>>>> d588fba5d0ccbd7eb9d2675cade49261c66a4a9b
             "internalConsoleOptions": "openOnSessionStart",
             "preLaunchTask": {
                 "type": "PlatformIO",
@@ -25,18 +31,30 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (skip Pre-Debug)",
+<<<<<<< HEAD
             "executable": "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/mqtt_example/firmware.elf",
             "projectEnvName": "mqtt_example",
             "toolchainBinDir": "/home/jackson-hao/.platformio/packages/toolchain-xtensa-esp-elf/bin",
+=======
+            "executable": "c:/Users/Jackson_Hao/PlatformIO/Projects/Espressif-32/src/build/uart_loopback/firmware.elf",
+            "projectEnvName": "uart_loopback",
+            "toolchainBinDir": "C:/Users/Jackson_Hao/.platformio/packages/toolchain-xtensa-esp-elf/bin",
+>>>>>>> d588fba5d0ccbd7eb9d2675cade49261c66a4a9b
             "internalConsoleOptions": "openOnSessionStart"
         },
         {
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (without uploading)",
+<<<<<<< HEAD
             "executable": "/home/jackson-hao/文档/PlatformIO/Projects/Espressif-32/src/build/mqtt_example/firmware.elf",
             "projectEnvName": "mqtt_example",
             "toolchainBinDir": "/home/jackson-hao/.platformio/packages/toolchain-xtensa-esp-elf/bin",
+=======
+            "executable": "c:/Users/Jackson_Hao/PlatformIO/Projects/Espressif-32/src/build/uart_loopback/firmware.elf",
+            "projectEnvName": "uart_loopback",
+            "toolchainBinDir": "C:/Users/Jackson_Hao/.platformio/packages/toolchain-xtensa-esp-elf/bin",
+>>>>>>> d588fba5d0ccbd7eb9d2675cade49261c66a4a9b
             "internalConsoleOptions": "openOnSessionStart",
             "loadMode": "manual"
         }
