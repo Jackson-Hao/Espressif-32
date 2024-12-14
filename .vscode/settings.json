@@ -15,7 +15,8 @@
         "sdkconfig.h": "c",
         "ets_sys.h": "c",
         "unistd.h": "c",
-        "esp_task_wdt.h": "c"
+        "esp_task_wdt.h": "c",
+        "osthread.h": "c"
     },
     "editor.gotoLocation.alternativeDeclarationCommand": "editor.action.revealDefinition",
     "editor.gotoLocation.alternativeDefinitionCommand": "editor.action.revealDefinition",
