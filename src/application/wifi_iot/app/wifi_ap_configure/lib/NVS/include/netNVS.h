@@ -15,6 +15,4 @@ esp_err_t ifWifiConfigExists(void);
 
 #define NVS_NAMESPACE "WIFI_CONFIG"
 
-
-
 #endif

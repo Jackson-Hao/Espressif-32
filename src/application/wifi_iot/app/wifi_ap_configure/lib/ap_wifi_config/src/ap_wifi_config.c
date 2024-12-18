@@ -19,11 +19,8 @@ static char* get_mac_address(void) {
     uint8_t *mac = (uint8_t *)malloc(6);
     char* mac_str = (char *)malloc(18);
     esp_efuse_mac_get_default(mac);
-    printf("mac:%s\n",mac);
-    for(int i=0;i<strlen((char *)mac);i++)
-        printf("%2X",mac[i]);//DC5475626670    ---》DC-54-75-62-66-70
-    printf("\n");
     sprintf(mac_str, "%02X%02X%02X%02X%02X%02X", mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+    printf("MAC address: %s\n", mac_str);
     return mac_str;
 }
 
@@ -94,7 +91,6 @@ static void wifi_event_sta_handler(void* arg, esp_event_base_t event_base,int32_
     }
 }
 
-
 void wifi_init_sta(char* ssid, char* password) {
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
@@ -118,7 +114,6 @@ void wifi_init_sta(char* ssid, char* password) {
         },
     };
 
-    // 使用 strncpy 复制 ssid 和 password
     strncpy((char*)wifi_config.sta.ssid, ssid, sizeof(wifi_config.sta.ssid) - 1);
     strncpy((char*)wifi_config.sta.password, password, sizeof(wifi_config.sta.password) - 1);
 

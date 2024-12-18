@@ -67,11 +67,9 @@ static esp_err_t post_handler(httpd_req_t *req) {
     int ret, remaining = req->content_len;
 
     while (remaining > 0) {
-        /* Read the data for the request */
         if ((ret = httpd_req_recv(req, buf,
                         MIN(remaining, sizeof(buf)))) <= 0) {
             if (ret == HTTPD_SOCK_ERR_TIMEOUT) {
-                /* Retry receiving if timeout occurred */
                 continue;
             }
             return ESP_FAIL;
@@ -96,7 +94,7 @@ static esp_err_t post_handler(httpd_req_t *req) {
         ESP_LOGI(TAG, "ssid: %s", json_ret->ssid);
         ESP_LOGI(TAG, "password: %s", json_ret->password);
         ESP_LOGI(TAG, "client_ip: %s", json_ret->client_ip);
-        ESP_LOGI(TAG, "====================================");
+        ESP_LOGI(TAG, "======================================");
         NVS_save_wifi_config(json_ret->ssid, json_ret->password);
         ESP_LOGI(TAG, "wifi configure success");
     }
@@ -116,7 +114,6 @@ static const httpd_uri_t recieve_data = {
     .user_ctx  = NULL
 };
 
-// recieve no data
 static esp_err_t shake_handler(httpd_req_t *req) {
     const char* resp_str = "{\"status\": \"success\"}";
     httpd_resp_send(req, resp_str, HTTPD_RESP_USE_STRLEN);
@@ -156,7 +153,6 @@ static void connect_handler(void* arg, esp_event_base_t event_base, int32_t even
         *server = start_webserver();
     }
 }
-
 
 void httpd_server_start(void){
     static httpd_handle_t server = NULL;
