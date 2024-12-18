@@ -12,8 +12,8 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug",
-            "executable": "c:/Users/Jackson_Hao/PlatformIO/Projects/Espressif-32/src/build/wifi_smartconfig/firmware.elf",
-            "projectEnvName": "wifi_smartconfig",
+            "executable": "c:/Users/Jackson_Hao/PlatformIO/Projects/Espressif-32/src/build/wifi_ap_configure/firmware.elf",
+            "projectEnvName": "wifi_ap_configure",
             "toolchainBinDir": "C:/Users/Jackson_Hao/.platformio/packages/toolchain-xtensa-esp-elf/bin",
             "internalConsoleOptions": "openOnSessionStart",
             "preLaunchTask": {
@@ -25,8 +25,8 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (skip Pre-Debug)",
-            "executable": "c:/Users/Jackson_Hao/PlatformIO/Projects/Espressif-32/src/build/wifi_smartconfig/firmware.elf",
-            "projectEnvName": "wifi_smartconfig",
+            "executable": "c:/Users/Jackson_Hao/PlatformIO/Projects/Espressif-32/src/build/wifi_ap_configure/firmware.elf",
+            "projectEnvName": "wifi_ap_configure",
             "toolchainBinDir": "C:/Users/Jackson_Hao/.platformio/packages/toolchain-xtensa-esp-elf/bin",
             "internalConsoleOptions": "openOnSessionStart"
         },
@@ -34,8 +34,8 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (without uploading)",
-            "executable": "c:/Users/Jackson_Hao/PlatformIO/Projects/Espressif-32/src/build/wifi_smartconfig/firmware.elf",
-            "projectEnvName": "wifi_smartconfig",
+            "executable": "c:/Users/Jackson_Hao/PlatformIO/Projects/Espressif-32/src/build/wifi_ap_configure/firmware.elf",
+            "projectEnvName": "wifi_ap_configure",
             "toolchainBinDir": "C:/Users/Jackson_Hao/.platformio/packages/toolchain-xtensa-esp-elf/bin",
             "internalConsoleOptions": "openOnSessionStart",
             "loadMode": "manual"
