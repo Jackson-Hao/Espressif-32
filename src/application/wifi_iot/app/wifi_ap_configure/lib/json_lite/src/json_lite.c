@@ -6,7 +6,6 @@
     "password": "xxxxx",
     "client_ip": "xxx.xxx.xxx.xxx",
 }
-
 */
 
 jsonResolut_t* json_parse_analyzed(const char *json_str) {
@@ -58,7 +57,6 @@ jsonResolut_t* json_parse_analyzed(const char *json_str) {
 }
 
 char* json_msg_ret(char* msg) {
-    // return json: {"message": "xxxx"}
     cJSON *root = cJSON_CreateObject();
     cJSON_AddStringToObject(root, "message", msg);
     char *json_str = cJSON_PrintUnformatted(root);
