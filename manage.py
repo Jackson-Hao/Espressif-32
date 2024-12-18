@@ -159,7 +159,13 @@ def clean_linux():
 def clean_windows():
     build_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src', 'build')
     if os.path.exists(build_dir):
-        os.system(f'rmdir /s /q {build_dir}')
+        for root, dirs, files in os.walk(build_dir):
+            for file in files:
+                os.remove(os.path.join(root, file))
+                print(Fore.GREEN + f"[Notice]: {file} has been removed successfully.")
+            for dir in dirs:
+                shutil.rmtree(os.path.join(root, dir))
+                print(Fore.GREEN + f"[Notice]: {dir} has been removed successfully.")
         print(Fore.GREEN + f"[Notice]: {build_dir} has been removed successfully.")
     else:
         print(Fore.RED + f"[Error]: {build_dir} does not exist.")
