@@ -10,5 +10,8 @@
     },
     "uart_loopback": {
         "dir": "${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/uart_loopback/CMakeLists.txt"
+    },
+    "net_config": {
+        "dir": "${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/net_config/CMakeLists.txt"
     }
 }
