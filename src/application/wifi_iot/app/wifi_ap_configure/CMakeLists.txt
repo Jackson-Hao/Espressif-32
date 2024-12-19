@@ -11,4 +11,6 @@ idf_component_register(
         ${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/wifi_ap_configure/lib/protocol_common/include
         ${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/wifi_ap_configure/lib/json_lite/include
         ${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/wifi_ap_configure/lib/NVS/include
+        ${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/wifi_ap_configure/lib/iot_mqtt_oc/include
+        ${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/wifi_ap_configure/lib/iot_gpio/include
 )
