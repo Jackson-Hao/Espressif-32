@@ -16,7 +16,8 @@
         "ets_sys.h": "c",
         "unistd.h": "c",
         "esp_task_wdt.h": "c",
-        "osthread.h": "c"
+        "osthread.h": "c",
+        "http_server_lite.h": "c"
     },
     "editor.gotoLocation.alternativeDeclarationCommand": "editor.action.revealDefinition",
     "editor.gotoLocation.alternativeDefinitionCommand": "editor.action.revealDefinition",

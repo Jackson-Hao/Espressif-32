@@ -173,6 +173,8 @@
                 "C:/Users/Jackson_Hao/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/wifi_ap_configure/lib/protocol_common/include",
                 "C:/Users/Jackson_Hao/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/wifi_ap_configure/lib/json_lite/include",
                 "C:/Users/Jackson_Hao/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/wifi_ap_configure/lib/NVS/include",
+                "C:/Users/Jackson_Hao/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/wifi_ap_configure/lib/iot_mqtt_oc/include",
+                "C:/Users/Jackson_Hao/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/wifi_ap_configure/lib/iot_gpio/include",
                 ""
             ],
             "browse": {
@@ -343,6 +345,8 @@
                     "C:/Users/Jackson_Hao/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/wifi_ap_configure/lib/protocol_common/include",
                     "C:/Users/Jackson_Hao/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/wifi_ap_configure/lib/json_lite/include",
                     "C:/Users/Jackson_Hao/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/wifi_ap_configure/lib/NVS/include",
+                    "C:/Users/Jackson_Hao/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/wifi_ap_configure/lib/iot_mqtt_oc/include",
+                    "C:/Users/Jackson_Hao/PlatformIO/Projects/Espressif-32/src/application/wifi_iot/app/wifi_ap_configure/lib/iot_gpio/include",
                     ""
                 ]
             },

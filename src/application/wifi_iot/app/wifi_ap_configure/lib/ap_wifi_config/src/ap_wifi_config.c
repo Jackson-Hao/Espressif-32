@@ -15,6 +15,8 @@
 static const char *TAG_AP = "[WIFI_AP_TASK]:";
 static const char *TAG_STA = "[WIFI_STA_TASK]:";
 
+SemaphoreHandle_t sem1 = NULL;
+
 static char* get_mac_address(void) {
     uint8_t *mac = (uint8_t *)malloc(6);
     char* mac_str = (char *)malloc(18);
@@ -88,10 +90,14 @@ static void wifi_event_sta_handler(void* arg, esp_event_base_t event_base,int32_
     else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
         ip_event_got_ip_t *event = (ip_event_got_ip_t *)event_data;
         ESP_LOGI(TAG_STA, "Got IP:" IPSTR, IP2STR(&event->ip_info.ip));
+        xSemaphoreGive(sem1);
     }
 }
 
 void wifi_init_sta(char* ssid, char* password) {
+
+    sem1 = xSemaphoreCreateBinary();
+
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
     esp_netif_create_default_wifi_sta();
@@ -120,6 +126,9 @@ void wifi_init_sta(char* ssid, char* password) {
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
     ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config));
     ESP_ERROR_CHECK(esp_wifi_start());
+
+    sem1 = xSemaphoreCreateBinary();
+
     ESP_LOGI(TAG_STA, "wifi_init_sta finished.");
     ESP_LOGI(TAG_STA, "SSID:%s, password:%s", wifi_config.sta.ssid, wifi_config.sta.password);
 }

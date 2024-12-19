@@ -8,7 +8,6 @@
 #include "sys/unistd.h"
 
 #define TAG "[MQTT client]:"
-#define MQTT_CLIENT_ID "6613b0b82ccc1a58388044e4_Hi3861V100_0_0_2024111707"
 #define IOT_OC_MQTT_PROFILE_PROPERTYREPORT_TOPICFMT "$oc/devices/%s/sys/properties/report"
 #define IOT_OC_MQTT_PROFILE_CMDRESP_TOPICFMT "$oc/devices/%s/sys/commands/response/request_id=%s"
 
@@ -55,7 +54,7 @@ static void oc_cmdresp(cmd_t *cmd, int cmdret) {
     cmdresp.request_id = cmd->request_id;
     cmdresp.ret_code = cmdret;
     cmdresp.ret_name = NULL;
-    if ((ret = oc_mqtt_profile_cmdresp(&mqtt_client_handle,IOT_OC_MQTT_PROFILE_CMDRESP_TOPICFMT,MQTT_CLIENT_ID, &cmdresp)) != 0) {
+    if ((ret = oc_mqtt_profile_cmdresp(&mqtt_client_handle,IOT_OC_MQTT_PROFILE_CMDRESP_TOPICFMT,MQTT_CLIENT_ID, &cmdresp)) < 0) {
         printf("Fatal error: Failed to response command\n");
     }
     return;
@@ -124,7 +123,7 @@ static void deal_cmd_msg(cmd_t *cmd) {
 }
 
 static void deal_report_msg(void) {
-    uint8_t ret;
+    int ret;
     oc_mqtt_profile_service_t service;
     oc_mqtt_profile_kv_t voltage;
     oc_mqtt_profile_kv_t current;
@@ -145,7 +144,7 @@ static void deal_report_msg(void) {
     current.nxt = NULL;
     
     ret = oc_mqtt_profile_propertyreport(&mqtt_client_handle, IOT_OC_MQTT_PROFILE_PROPERTYREPORT_TOPICFMT, MQTT_CLIENT_ID, &service);
-    if (ret != 0) {
+    if (ret < 0) {
         printf("Fatal error: Failed to report property\n");
     }
     return;
