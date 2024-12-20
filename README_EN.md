@@ -16,7 +16,7 @@
   - [Available Dependency Libraries](#available-dependency-libraries)
 
 ## Copyright
-**Copyright (c) 2024, College of Electrical and Information Engineering, Jackson Hao**
+**Copyright (c) 2024, College of Electrical and Information Engineering, Jackson Hao<br>**
 **Copyright (c) 2024, School of Software, Artificial Intelligence Lab<br>**
 ![alt text](picture/LAB.png)
 
