@@ -16,5 +16,8 @@
     },
     "wifi_ap_configure": {
         "dir": "${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/wifi_ap_configure/CMakeLists.txt"
+    },
+    "HAL_OLED": {
+        "dir": "${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/HAL_OLED/CMakeLists.txt"
     }
 }
