@@ -44,7 +44,7 @@ typedef struct {
 }oc_mqtt_profile_cmdresp_t;
 
 uint8_t oc_mqtt_profile_cmdresp(esp_mqtt_client_handle_t *mqtt_handle,char *oc_mqtt_profile_cmdresp_topic,char *deviceid, oc_mqtt_profile_cmdresp_t *payload);
-uint8_t oc_mqtt_profile_propertyreport(esp_mqtt_client_handle_t *mqtt_handle, char *oc_mqtt_profile_propertyreport_topic, char *deviceid, oc_mqtt_profile_service_t *payload);
+int oc_mqtt_profile_propertyreport(esp_mqtt_client_handle_t *mqtt_handle, char *oc_mqtt_profile_propertyreport_topic, char *deviceid, oc_mqtt_profile_service_t *payload);
 char *oc_mqtt_profile_package_cmdresp(oc_mqtt_profile_cmdresp_t *payload);
 char *topic_make(char *fmt, char *device_id, char *request_id);
 

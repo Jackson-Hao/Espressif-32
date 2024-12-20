@@ -5,10 +5,19 @@
     "mqtt_example": {
         "dir": "${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/mqtt_example/CMakeLists.txt"
     },
+    "multi_task": {
+        "dir": "${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/multi_task/CMakeLists.txt"
+    },
     "startup": {
         "dir": "${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/startup/CMakeLists.txt"
     },
-    "multi_task": {
-        "dir": "${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/multi_task/CMakeLists.txt"
+    "uart_loopback": {
+        "dir": "${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/uart_loopback/CMakeLists.txt"
+    },
+    "wifi_ap_configure": {
+        "dir": "${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/wifi_ap_configure/CMakeLists.txt"
+    },
+    "HAL_OLED": {
+        "dir": "${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/HAL_OLED/CMakeLists.txt"
     }
 }
