@@ -44,33 +44,6 @@ def generate_platformio_ini(include_dirs, ini_file):
             file.write("[common]\n")
             file.write("build_flags =\n")
 
-'''
-def select():
-    cmake_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src','CMakeLists.txt')
-    ini_file = 'platformio.ini'
-    
-    if not os.path.exists(cmake_file):
-        print(Fore.RED + f"{cmake_file} does not exist.")
-        return
-    
-    include_dirs = parse_cmake_file(cmake_file)
-    if not include_dirs:
-        print(Fore.RED + "[Error]: No include directories found.")
-        return
-    # 如果存在多个 include 目录，问用户选择一个
-    if len(include_dirs) >= 1:
-        print(Fore.GREEN + "\nMultiple include directories found.")
-        print(Fore.GREEN + "-----------------------------")
-        for i, dir in enumerate(include_dirs):
-            print(Fore.CYAN + f"{i + 1}: {dir}")
-        print(Fore.GREEN + "-----------------------------")
-        index = int(input(Fore.BLUE + "Please select one: ")) - 1
-        include_dirs = [include_dirs[index]]
-    generate_platformio_ini(include_dirs, ini_file)
-    print(Fore.GREEN + f"\n[Notice]: Selected service directory: {include_dirs[0]}")
-    print(Fore.GREEN + "[Notice]: \"platformio.ini\" has been updated successfully.\n")
-'''
-
 def select(service_name=None):
     services_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src', 'Services.json')
     cmake_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src', 'CMakeLists.txt')
