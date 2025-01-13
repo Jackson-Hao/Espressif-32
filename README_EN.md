@@ -40,8 +40,9 @@ Additionally, this repository contains some commonly used IoT projects that can 
 
 ## Version Information
 
-Framework Version: NEXT.0.0.76<br>
+Framework Version: 19.01 (V2019.1.1.110)
 Example Version: [Example Version Records](docs/Examples.md)
+Support Period: 2025-01-13 ~ 2025-02-13
 
 ---
 
