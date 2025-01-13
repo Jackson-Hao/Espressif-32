@@ -72,6 +72,7 @@ The usage of this framework is as follows:
 - `startup`: A Hello World business project
 - `uart_example`: A serial loopback business project
 - `wifi_ap_configure`: A WiFi AP configuration business project
+- `wifi_ap_configure_with_ota`: A WiFi AP configuration business project with OTA upgrade support
 
 ## Available Dependency Libraries
 
@@ -85,5 +86,6 @@ The usage of this framework is as follows:
 - `osThread`
 - `ping_lite` (untested)
 - `sc_wifi_config`
+- `version`
 
 </font>
