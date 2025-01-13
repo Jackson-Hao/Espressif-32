@@ -1,3 +1,3 @@
 include(
-    ${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/wifi_ap_configure/CMakeLists.txt
+    ${CMAKE_SOURCE_DIR}/src/application/wifi_iot/app/wifi_ap_configure_with_ota/CMakeLists.txt
 )

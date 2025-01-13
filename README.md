@@ -1,11 +1,11 @@
 <font face="宋体">
 
-# Espressif芯片快速管理辅助框架
+# Espressif 芯片快速管理辅助框架
 
 ---
 
 ## 目录
-- [Espressif芯片快速管理辅助框架](#espressif芯片快速管理辅助框架)
+- [Espressif 芯片快速管理辅助框架](#espressif-芯片快速管理辅助框架)
   - [目录](#目录)
   - [版权声明](#版权声明)
   - [前言](#前言)
@@ -71,7 +71,7 @@ la_jackson_hao@petalmail.com<br>
 - `startup`：Hello World的业务工程
 - `uart_example`：串口回环的业务工程
 - `wifi_ap_configure`：WiFi AP配置的业务工程
-
+- `wifi_ap_configure_with_ota`：WiFi AP配置的业务工程，支持OTA升级
 ## 可使用依赖库列表
 
 - `ap_wifi_config`
@@ -84,5 +84,6 @@ la_jackson_hao@petalmail.com<br>
 - `osThread`
 - `ping_lite` 未经验证
 - `sc_wifi_config`
+- `version`
 
 </font>
