@@ -40,9 +40,11 @@ Additionally, this repository contains some commonly used IoT business projects 
 
 ## Version Information
 
-Framework Version: 19.01-Dev (HWE2019.1.1.110)
+Framework Version: 19.09-Dev (HWE2019.9.19)
 Example Version: [Example Version Records](docs/Examples.md)
 Support Period: 2025-01-13 ~ 2025-01-31
+
+**This version (Dev 19.09) is a development version and may contain some unknown issues. Please do not use it in a production environment. For production use, please use the official or LTS version.**
 
 ---
 
@@ -100,6 +102,7 @@ If you need to configure library dependencies for a project, go to the following
 - `uart_example`: A serial loopback project
 - `wifi_ap_configure`: A WiFi AP configuration project
 - `wifi_ap_configure_with_ota`: A WiFi AP configuration project with OTA support
+- `oled_ssd1306`: An OLED display project
 
 ### Available Dependency Libraries
 
@@ -114,6 +117,7 @@ If you need to configure library dependencies for a project, go to the following
 - `ping_lite` (untested)
 - `sc_wifi_config`
 - `version`
+- `oled`
 
 ### Command List
 - `python manage.py -h` `python manage.py --help`: View help information

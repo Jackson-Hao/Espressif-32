@@ -1,9 +1,9 @@
-# Espressif 物联网快速开发框架 (开发版本)
+# Espressif 物联网快速开发框架 (开发版)
 
 ---
 
 ## 目录
-- [Espressif 物联网快速开发框架 (开发版本)](#espressif-物联网快速开发框架-开发版本)
+- [Espressif 物联网快速开发框架 (开发版)](#espressif-物联网快速开发框架-开发版)
   - [目录](#目录)
   - [前言](#前言)
   - [开发环境](#开发环境)
@@ -40,9 +40,11 @@
 
 ## 版本信息
 
-框架版本：19.01-Dev (HWE2019.1.1.110)
+框架版本：19.09-Dev (HWE2019.9.19)
 案例版本：[案例版本记录](docs/Examples.md)
 支持周期：2025-01-13 ~ 2025-01-31
+
+**本版本(Dev 19.09)为开发版，可能存在一些未知的问题，请勿用于生产环境。如需使用，请使用正式版或LTS版本。**
 
 ---
 
@@ -100,7 +102,8 @@
 - `uart_example`：串口回环的业务工程
 - `wifi_ap_configure`：WiFi AP配置的业务工程
 - `wifi_ap_configure_with_ota`：WiFi AP配置的业务工程，支持OTA升级
-- 
+- `oled_ssd1306`：OLED显示屏的业务工程
+
 ### 可使用依赖库列表
 
 - `ap_wifi_config`
@@ -114,6 +117,7 @@
 - `ping_lite` 未经验证
 - `sc_wifi_config`
 - `version`
+- `oled`
 
 ### 命令列表
 - `python manage.py -h` `python manage.py --help`：查看帮助信息
@@ -129,7 +133,7 @@
 ---
 
 ## 版权声明
-**© 电气与信息工程学院 Jackson Hao<br>**
+**© 电气信息工程学院 Jackson Hao<br>**
 **© 软件学院 人工智能创新实验室<br>**
 ![alt text](picture/LAB.png)
 
